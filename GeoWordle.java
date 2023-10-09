@@ -9,23 +9,51 @@
 
 public class GeoWordle {
     //Displaying the interface (boxes + intro message)
+    public void startMenu() { //Dennis
+        //Displays a start menu
+    }
 
-    //Secret word finder: Category selection + Randompicker of wordle
-    public String solution() {
-        String secretWord;
-        
-        return secretWord;
+    public void gameWindow() { //Mantas
+        //Displays the matrix, game name up top, GUESS button.
+        //Interface
+    }
+
+    public String secretWord() { //Dennis
+        //Read category words from category file mentioned in startMenu.
+        //Pick out a random word.
+        return "fml";
+    }
+
+    //Solution checker
+    public boolean solution() { //Mantas
+        //Takes input of each guess (check for length)
+        //recursion algorithm to check for guessed word = secretWord
+        //Remember to save number of guesses, time and previous guesses.
+        return true;
     }
 
     //Analysis of input: displaying the colours
-    public boolean correctLetter() {
+    public boolean correctLetter() { //Dennis
 
-        return false;
+        return true;
     }
 
-    public boolean correctPosition() {
+    public boolean correctPosition() { //Dennis
 
-        return false;
+        return true;
+    }
+
+    public void guessEffect() { //Dennis
+        //if correct letter but !correctposition, then: orange
+        //if correct letter and correct position, then: green
+    }
+
+    public void victoryWindow() { //Mantas
+        //if solution = true, start victoryWindow
+    }
+
+    public void defeatWindow() { //Dennis
+        //if solution = false, start defeatWindow
     }
 
     public static void main(String[] args) {
