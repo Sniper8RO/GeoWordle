@@ -6,12 +6,15 @@ import java.util.List;
 import javax.swing.JTextField;
 import java.util.Scanner;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * Simple wordle game variation entitled GeoWordle.
  * @name Dennis-Cristian Baractaru
  * @studentID <1956957>
- * @name
- * @studentID
+ * @name Mantas Juškauskas
+ * @studentID <1954733>
  * @date 07/10/2023
  */
 
@@ -25,6 +28,8 @@ public class GeoWordle {
     
     public int startMenu() { //Dennis
         //Displays a start menu
+        StartLayout displayMenu = new StartLayout();
+        displayMenu.main(categories);
         int chosenCategory = 1;
         return chosenCategory;
     }
@@ -32,6 +37,7 @@ public class GeoWordle {
     public void gameWindow() { //Mantas
         //Displays the matrix, game name up top, GUESS button.
         //Interface
+        
     }
 
     public String secretWord(int chosenCategory) { //Dennis
@@ -84,7 +90,7 @@ public class GeoWordle {
     public boolean inputCorrectness(char[] secretWordArray, String pickSecretWord) { //Dennis
         boolean correctLetter;
         boolean correctPosition;
-        for (int i = 0; i < pickSecretWord.length(); i++) {
+        /*for (int i = 0; i < pickSecretWord.length(); i++) {
             for (int j = 0; j < guess.length(); j++) {
                 if (guessedLetter[i].equals(secretWordArray[j]) && i == j) {
                     return correctLetter && correctPosition;
@@ -93,7 +99,9 @@ public class GeoWordle {
                 }
             }
         }
-        return !correctLetter && !correctPosition;
+        //return !correctLetter && !correctPosition; 
+        */
+        return true;
     }
     
     public void guessEffect() { //Dennis
