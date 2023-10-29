@@ -1,5 +1,6 @@
 # GeoWordle
 Challenge-Based Learning Project
+https://github.com/Sniper8RO/GeoWordle.git
 
 Welcome to GeoWordle!
 An alternative to the original WORDLE game. 
