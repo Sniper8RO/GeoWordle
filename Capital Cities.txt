@@ -18,7 +18,7 @@ Belmopan
 Berlin
 Bern
 Bishkek
-Bogotá
+Bogota
 Bratislava
 Brazzaville
 Bridgetown
@@ -138,7 +138,7 @@ Warsaw
 Washington
 Wellington
 Windhoek
-Yaoundé
+Yaounde
 Yamoussoukro
 Yerevan
 Zagreb

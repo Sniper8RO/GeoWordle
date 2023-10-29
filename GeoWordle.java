@@ -1,50 +1,51 @@
+import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javax.swing.JTextField;
-import java.util.Scanner;
-
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * Simple wordle game variation entitled GeoWordle.
- * @name Dennis-Cristian Baractaru
+ * @author Dennis-Cristian Baractaru
  * @studentID <1956957>
- * @name Mantas Juškauskas
+ * @author Mantas Juškauskas
  * @studentID <1954733>
  * @date 07/10/2023
  */
 
- 
-public class GeoWordle {
-    Scanner sc = new Scanner(System.in);
+public class GeoWordle extends JFrame {
     //Displaying the interface (boxes + intro message)
-    String[] categories = new String[] {"Animals.txt", "Capital Cities.txt", "Car brands.txt", 
-        "Countries.txt", "Lakes.txt", "Mountain Ranges.txt", "Plants.txt", 
-        "Rivers.txt", "Seas.txt", "Volcanoes.txt"};
+    static String[] categories = new String[] {"Animals.txt", 
+        "Capital Cities.txt", "Car brands.txt", 
+        "Countries.txt", "Lakes.txt", "Mountain Ranges.txt",
+        "Plants.txt", "Rivers.txt", "Seas.txt", "Volcanoes.txt"};
     
-    public int startMenu() { //Dennis
+    public static int startCounter = 0;
+    public static int chosenCategory = -1;
+    
+    /**
+     * The method creates the Start menu window.
+     */
+    public static int startMenu() {
         //Displays a start menu
         StartLayout displayMenu = new StartLayout();
         displayMenu.main(categories);
-        int chosenCategory = 1;
+        
+        while (chosenCategory == -1) {
+            chosenCategory = StartLayout.pickCategory;
+            System.out.println(chosenCategory);
+        }
         return chosenCategory;
     }
 
-    public void gameWindow() { //Mantas
-        //Displays the matrix, game name up top, GUESS button.
-        //Interface
-        
-    }
-
-    public String secretWord(int chosenCategory) { //Dennis
-        //Read category words from category file mentioned in startMenu.
-        //Pick out a random word.
-
-        //List created to store all the words from the chosen category.
+    /**
+     * This method reads the category words from category file mentioned in startMenu.
+     * It picks out a random word and creates a list to store all of the words
+     * from the chosen category.
+     */
+    public static String secretWord(int chosenCategory) {
         List<String> categoryArray = new ArrayList<String>();
         //Try/catch needed in order to prevent dangerous code
         try { 
@@ -67,57 +68,69 @@ public class GeoWordle {
         return pickSecretWord;
     }
 
-    //Solution checker
-    public boolean solution() { //Mantas
-        //Takes input of each guess (check for length)
-        //recursion algorithm to check for guessed word = secretWord
-        //Remember to save number of guesses, time and previous guesses.
-        return true;
-    }
-
-    public char[] splitSecretWord(String pickSecretWord) {
-        char[] secretWordArray = new char[pickSecretWord.length()];
-        for (int i = 0; i < pickSecretWord.length(); i++) {
-            secretWordArray[i] = pickSecretWord.charAt(i);
+    public static JLabel resultLabel = new JLabel();
+    public static String[] guessingProgress;
+    
+    /**
+     * This method creates the gamewindow and its design.
+     */
+    public void gameWindow(String pickSecretWordy) { //Mantas
+        //Displays the matrix, game name up top, GUESS button.
+        //Interface
+        guessingProgress = new String[targetWord.length()];
+        JFrame frame = new JFrame("GeoWordle");
+        frame.setLayout(new BorderLayout());
+        GameWindowLayout gameWindow = 
+            new GameWindowLayout(GameWindowLayout.createMatrix(pickSecretWordy));
+        //Initial guessing progress output row of "-"
+        String[] guessingProgress = new String[targetWord.length()];
+        for (int i = 0; i < guessingProgress.length; i++) {
+            guessingProgress[i] = "-";
         }
-        return secretWordArray;
+        String guessingProgressString = String.join(" ", guessingProgress);
+        guessingProgressString = guessingProgressString.toUpperCase(getLocale());
+
+        //Frame settings and matrix panel addition
+        frame.setSize(700, 700); 
+        JPanel matrixPanel = new JPanel();
+        frame.add(matrixPanel, BorderLayout.NORTH);
+        matrixPanel.add(gameWindow);
+        frame.setResizable(false);
+
+        //Disclaimer panel
+        JPanel disclaimerPanel = new JPanel();
+        JLabel disclaimerLabel = new JLabel("DO NOT LEAVE ANY EMPTY CELLS");
+        disclaimerPanel.add(disclaimerLabel);
+        frame.add(disclaimerPanel, BorderLayout.CENTER);
+
+        //Guessing progress panel
+        JPanel runPanel = new JPanel();
+        resultLabel.setText("YOUR GUESSING PROGRESS: " + guessingProgressString);
+        runPanel.add(resultLabel);
+        frame.add(runPanel, BorderLayout.SOUTH);
+
+        frame.setVisible(true);
+        StartLayout.frame.setVisible(false);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
     }
 
     /**
-     * Analysis of input: if guessed letter is the same as the secretword letter
-     * or/and if the position of the guessed letter is the same as the position of the secretword letter.
-     **/
-    public boolean inputCorrectness(char[] secretWordArray, String pickSecretWord) { //Dennis
-        boolean correctLetter;
-        boolean correctPosition;
-        /*for (int i = 0; i < pickSecretWord.length(); i++) {
-            for (int j = 0; j < guess.length(); j++) {
-                if (guessedLetter[i].equals(secretWordArray[j]) && i == j) {
-                    return correctLetter && correctPosition;
-                } else if (guessedLetter[i].equals(secretWordArray[j])) {
-                    return correctLetter && !correctPosition;
-                }
-            }
-        }
-        //return !correctLetter && !correctPosition; 
-        */
-        return true;
+     * Attention window when empty row.
+     */
+    public void attention() {
+        JFrame attention = new JFrame("Attention!");
+        JLabel reminder = new JLabel("No empty rows!");
+        attention.add(reminder);
+        attention.setSize(250, 250);
+        attention.setVisible(true);
     }
     
-    public void guessEffect() { //Dennis
-        //if correct letter but !correctposition, then: orange
-        //if correct letter and correct position, then: green
-    }
-
-    public void victoryWindow() { //Mantas
-        //if solution = true, start victoryWindow
-    }
-
-    public void defeatWindow() { //Dennis
-        //if solution = false, start defeatWindow
-    }
+    public static int chosen = startMenu();
+    public static String targetWord = secretWord(chosen);
 
     public static void main(String[] args) {
-        new GeoWordle().startMenu();
+        new GeoWordle();
+        GeoWordle.startMenu();
+        new GeoWordle().gameWindow(targetWord);
     }
 }

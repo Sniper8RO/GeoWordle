@@ -5,7 +5,6 @@ Kilimanjaro
 Etna
 Krakatoa
 Cotopaxi
-Mauna Loa
 Tambora
 Popocatepetl
 Pinatubo

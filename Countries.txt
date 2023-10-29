@@ -24,9 +24,8 @@ Botswana
 Brazil
 Brunei
 Bulgaria
-Burkina Faso
+Burkina
 Burundi
-Cabo Verde
 Cambodia
 Cameroon
 Canada
@@ -117,7 +116,6 @@ Netherlands
 Nicaragua
 Niger
 Nigeria
-Korea
 Norway
 Oman
 Pakistan
